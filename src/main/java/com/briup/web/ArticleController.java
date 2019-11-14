@@ -22,6 +22,8 @@ import com.briup.util.Message;
 import com.briup.util.MessageUtil;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
@@ -30,6 +32,7 @@ import io.swagger.annotations.ApiParam;
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
+	
 	@Autowired
 	IArticleService ias;
 	@ApiOperation(value = "查找所有文章")
@@ -71,5 +74,15 @@ public class ArticleController {
 		article.setCategoryId(categoryId);
 		ias.saveOrUpdate(article);
 		return MessageUtil.success("成功");
+	}
+	@ApiOperation(value = "通过Id来删除")
+	@ApiImplicitParams(
+			@ApiImplicitParam(name="id",value = "编号",required = true,paramType = "query") 
+	)
+	@GetMapping("deleteById")
+	public Message deleteById(Integer id)
+	{
+		ias.deleteById(id);
+		return MessageUtil.success("删除成功");
 	}
 }

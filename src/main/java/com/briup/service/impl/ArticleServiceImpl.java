@@ -46,11 +46,15 @@ public class ArticleServiceImpl implements IArticleService{
 			System.out.println("执行更改");
 			am.updateByPrimaryKey(article);
 		}else
-		{				
-			if(am.selectByPrimaryKey(article.getId())!=null)
+		{	
+			List<Article> list = findAll();
+			for(Article a:list)
 			{
-				throw new CustomerException();
-			}
+				if(a.getTitle().equals(article.getTitle()))
+				{
+					throw new CustomerException();
+				}
+			}		
 			article.setPublishTime(new Date().getTime());
 			article.setReadTimes(0L);		
 			article.setStatus(status);
@@ -63,6 +67,22 @@ public class ArticleServiceImpl implements IArticleService{
 	@Override
 	public List<ArticleExtend> cascadeFindAll() {
 		return aem.cascadeFindAll();
+	}
+
+
+
+	@Override
+	public void deleteById(Integer id) {
+		Article article = am.selectByPrimaryKey(id);
+		if(article!=null)
+		{
+			am.deleteByPrimaryKey(id);
+		}
+		else
+		{
+			throw new CustomerException();
+		}
+		
 	}
 
 

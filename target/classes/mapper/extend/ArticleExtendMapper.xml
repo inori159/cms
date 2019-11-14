@@ -8,10 +8,9 @@
   	
   </resultMap>
   <select id="cascadeFindAll" resultMap="BaseResultExtendMap">
-  	select ca.id,ca.title,ca.category_id,cc.name,cc.no,cu.username
-  	from cms_article ca,cms_category cc,cms_user cu
+  	select ca.id,ca.title,ca.category_id,cc.name,cc.no
+  	from cms_article ca,cms_category cc
   	where ca.category_id=cc.id
-	and ca.author_id=cu.id
   </select>
   
   <select id="findById" resultMap="BaseResultExtendMap" parameterType="int">

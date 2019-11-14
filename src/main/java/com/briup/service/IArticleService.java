@@ -13,5 +13,7 @@ public interface IArticleService {
 	
 	public List<ArticleExtend> cascadeFindAll();
 	
+	public void deleteById(Integer id);
+	
 	public void saveOrUpdate(Article article) throws RuntimeException;
 }
