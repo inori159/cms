@@ -59,6 +59,9 @@ public class CategoryController {
 		category.setDescription(description);
 		categoryService.saveOrUpdate(category);
 		System.out.println("test git history");
+		
+		
+		
 		return MessageUtil.success("更新成功");
 		
 	}
