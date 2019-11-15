@@ -3,6 +3,7 @@ package com.briup.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.briup.bean.Article;
 import com.briup.bean.Category;
@@ -11,6 +12,7 @@ import com.briup.dao.CategoryMapper;
 import com.briup.service.ICategoryService;
 import com.briup.util.CustomerException;
 
+@Service
 public class CategoryServiceImpl implements ICategoryService{
 
 	@Autowired
@@ -46,6 +48,14 @@ public class CategoryServiceImpl implements ICategoryService{
 			categoryMapper.insert(category);
 		}
 		
+	}
+
+	@Override
+	public void batchDelete(Integer[] ids) {
+		for(int i=0;i<ids.length;i++)
+		{
+			categoryMapper.deleteByPrimaryKey(ids[i]);
+		}
 	}
 
 }

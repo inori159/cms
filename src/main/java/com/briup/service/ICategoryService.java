@@ -12,4 +12,6 @@ public interface ICategoryService {
 	public void deleteById(Integer id);
 	
 	public void saveOrUpdate(Category category) throws RuntimeException;
+	
+	public void batchDelete(Integer[] ids);
 }
