@@ -16,4 +16,6 @@ public interface IArticleService {
 	public void deleteById(Integer id);
 	
 	public void saveOrUpdate(Article article) throws RuntimeException;
+	
+	
 }

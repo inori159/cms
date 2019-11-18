@@ -2,24 +2,21 @@ package com.briup.web;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.bean.Article;
-import com.briup.bean.extend.ArticleExtend;
-import com.briup.dao.extend.ArticleExtendMapper;
 import com.briup.service.IArticleService;
 import com.briup.util.Message;
 import com.briup.util.MessageUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -35,11 +32,23 @@ public class ArticleController {
 	
 	@Autowired
 	IArticleService ias;
+	
+	
 	@ApiOperation(value = "查找所有文章")
 	@GetMapping("findAll")
 	public Message findAll()
 	{
 		return MessageUtil.success("成功", ias.findAll());
+	}
+	
+	@ApiOperation(value = "分页")
+	@GetMapping("findAllPage")
+	public Message findAllPage()
+	{
+		PageHelper.startPage(1, 2);
+		List<Article> list = ias.findAll();
+		PageInfo<Article> pageInfo = new PageInfo<Article>(list);
+		return MessageUtil.success("成功", pageInfo);
 	}
 	
 	@ApiOperation(value = "查找所有栏目的文章")
@@ -49,12 +58,16 @@ public class ArticleController {
 		return MessageUtil.success("成功", ias.cascadeFindAll());
 	}
 	
+	
 	@ApiOperation(value = "查找文章即评论")
+	@ResponseBody
 	@GetMapping("findById")
-	public Message findById(int id)
+	public Message findById(Integer id)
 	{
 		return MessageUtil.success("成功", ias.findById(id));
 	}
+	
+	
 	@ApiOperation(value = "保存或更新的接口")
 	@PostMapping("saveOrUpdate")
 	public Message saveOrUpdate(

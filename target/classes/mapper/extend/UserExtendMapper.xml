@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.briup.dao.UserMapper">
-  <resultMap id="BaseResultExtendMap" type="com.briup.bean.User" extends="com.briup.dao.UserMapper.BaseResultMap">
-	<collection property="articleExtends" resultMap="com.briup.dao.extend.ArticleExtendMapper.BaseResultExtendMap"></collection>
-	<collection property="comments" resultMap="com.briup.dao.CommentMapper.BaseResultExtendMap"></collection>
-	<collection property="logs" resultMap="com.briup.dao.LogsMapper.BaseResultMap"></collection>
-  </resultMap>
-  
+<mapper namespace="com.briup.dao.extend.UserExtendMapper">
+	<resultMap id="BaseResultExtendMap"
+		type="com.briup.bean.extend.UserExtend"
+		extends="com.briup.dao.UserMapper.BaseResultMap">
+		<!-- <collection property="articleExtends" -->
+		<!-- resultMap="com.briup.dao.extend.ArticleExtendMapper.BaseResultExtendMap"></collection> -->
+		<!-- <collection property="comments" -->
+		<!-- resultMap="com.briup.dao.CommentMapper.BaseResultExtendMap"></collection> -->
+		<!-- <collection property="logs" -->
+		<!-- resultMap="com.briup.dao.LogsMapper.BaseResultMap"></collection> -->
+		<collection property="roles"
+			resultMap="com.briup.dao.RoleMapper.BaseResultExtendMap"></collection>
+	</resultMap>
+
+	<select id="cascadeRoleFindAll" resultMap="BaseResultExtendMap">
+		select
+		cu.*,cr.id as crid,cr.name as crname
+		from cms_user_role cur,cms_user cu,cms_role cr
+		where cur.user_id=cu.id
+		and cur.rold_id=cr.id
+	</select>
+	
+	<select id="findById" resultMap="BaseResultExtendMap" parameterType="Integer">
+		select cu.*,cr.id as crid,cr.name as crname
+		from cms_user_role cur,cms_user cu,cms_role cr
+		where cur.user_id=cu.id
+		and cur.rold_id=cr.id
+		and cu.id = #{id}
+	</select>
 </mapper>

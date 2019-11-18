@@ -1,8 +1,15 @@
 package com.briup.config;
 
+import java.util.Properties;
+
+import org.aopalliance.intercept.Interceptor;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.github.pagehelper.PageHelper;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -16,5 +23,6 @@ public class WebConfig implements WebMvcConfigurer {
 				.allowCredentials(true)
 				.maxAge(3600);
 	}
+
 
 }

@@ -19,7 +19,7 @@ import com.briup.util.CustomerException;
 @Service
 public class ArticleServiceImpl implements IArticleService{
 
-	private static String status = "正在审核";
+	private static String status = "";
 	
 	@Resource
 	ArticleMapper am;
@@ -86,5 +86,5 @@ public class ArticleServiceImpl implements IArticleService{
 	}
 
 
-	
+
 }

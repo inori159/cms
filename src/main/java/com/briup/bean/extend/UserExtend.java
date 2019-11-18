@@ -4,10 +4,22 @@ import java.util.List;
 
 import com.briup.bean.Comment;
 import com.briup.bean.Logs;
+import com.briup.bean.Role;
 import com.briup.bean.User;
 
 public class UserExtend extends User{
+	
+	private List<Role> roles;
+	private List<ArticleExtend> articleExtends;
+	private List<Comment> comments;
+	private List<Logs> logs;
 
+	public List<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
 	public List<Comment> getComments() {
 		return comments;
 	}
@@ -28,7 +40,4 @@ public class UserExtend extends User{
 		this.logs = logs;
 	}
 
-	private List<ArticleExtend> articleExtends;
-	private List<Comment> comments;
-	private List<Logs> logs;
 }

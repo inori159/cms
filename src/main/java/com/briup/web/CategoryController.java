@@ -50,23 +50,24 @@ public class CategoryController {
 	public Message saveOrUpdate(
 			@ApiParam(name = "id",value = "编号")@RequestParam(required = false,name = "id") Integer id,
 			@ApiParam(name = "name",value = "栏目名称")@RequestParam(required = true,name = "name") String name,
-			@ApiParam(name = "description",value = "栏目描述")@RequestParam(required = false,name = "description")String description
+			@ApiParam(name = "description",value = "栏目描述")@RequestParam(required = false,name = "description")String description,
+			@ApiParam(name = "parent_id",value = "父栏目")@RequestParam(required = false,name = "parent_id")Integer parent_id
 	)
 	{
 		Category category = new Category();
+		
 		category.setId(id);
 		category.setName(name);
 		category.setDescription(description);
+		category.setParentId(parent_id);
 		categoryService.saveOrUpdate(category);
-		System.out.println("test git history");		
-		return MessageUtil.success("更新成功");
-		
+		return MessageUtil.success("更新成功");	
 	}
 	
 
 	@ApiOperation(value = "批量删除栏目")
 	@PostMapping(value = "batchDelete")
-	public Message batchDelete( Integer[] ids)
+	public Message batchDelete(@RequestBody Integer[] ids)
 	{
 		System.out.println(Arrays.toString(ids));
 		categoryService.batchDelete(ids);

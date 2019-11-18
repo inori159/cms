@@ -35,5 +35,12 @@ public class MessageUtil {
         message.setTimestamp(new Date().getTime());
         return message;
     }
+    public static Message success(Object data){
+    	Message message = new Message();
+    	message.setStatus(200);
+    	message.setData(data);
+    	message.setTimestamp(new Date().getTime());
+    	return message;
+    }
 
 }

@@ -55,12 +55,11 @@
 		<!-- <table tableName="cms_category" domainObjectName="Category" ></table> -->
 		<!-- <table tableName="cms_comment" domainObjectName="Comment" ></table> -->
 		<!-- <table tableName="cms_logs" domainObjectName="Logs" ></table> -->
-		<!-- <table tableName="cms_privilege" domainObjectName="Privilege" ></table> -->
-		<!-- <table tableName="cms_role" domainObjectName="Role" ></table> -->
-		<!-- <table tableName="cms_role_privilege" domainObjectName="RolePrivilege" 
-			></table> -->
+		<table tableName="cms_privilege" domainObjectName="Privilege" ></table>
+		<table tableName="cms_role" domainObjectName="Role" ></table>
+		<table tableName="cms_role_privilege" domainObjectName="RolePrivilege" ></table>
 		<!-- <table tableName="cms_user" domainObjectName="User" ></table> -->
-		<!-- <table tableName="cms_user_role" domainObjectName="UserRole" ></table> -->
+		<table tableName="cms_user_role" domainObjectName="UserRole" ></table>
 		<!-- <table tableName="test" domainObjectName="Test" ></table> -->
 
 		<!-- mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate -->
