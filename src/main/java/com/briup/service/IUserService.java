@@ -18,4 +18,6 @@ public interface IUserService {
 	public void setRoles();
 	
 	public UserExtend findById(Integer id);
+	
+	public void insertUserRold(Integer userId,Integer[] roleIds);
 }

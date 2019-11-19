@@ -17,5 +17,4 @@ public interface IArticleService {
 	
 	public void saveOrUpdate(Article article) throws RuntimeException;
 	
-	
 }

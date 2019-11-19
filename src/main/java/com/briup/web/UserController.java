@@ -20,7 +20,6 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
 	@Autowired
 	IUserService userService;
 	
@@ -38,12 +37,15 @@ public class UserController {
 		return MessageUtil.success("查询成功", userService.cascadeRoleFindAll());
 	}
 	
+	
+	
+	
 	@ApiOperation(value = "登录")
-	@PostMapping("login")
+	@PostMapping(value = "login")
 	public Message login(@RequestBody UserVm userVm)
 	{
 		Map<String,String> map = new HashMap<>();
-		map.put("token", "admin");	
+		map.put("token", "admin-token");	
 		return MessageUtil.success(map);
 	}
 	
@@ -56,9 +58,19 @@ public class UserController {
     }
     
     @ApiOperation(value = "通过token获取用户信息")
-    @PostMapping(value = "info")
+    @GetMapping(value = "info")
     public Message info(String token)
     {    	
 		return MessageUtil.success(userService.findById(1));
+    }
+    
+    
+    @ApiOperation(value ="设置用户角色")
+    @PostMapping(value = "insertUserRold")
+    public Message insertUserRold(Integer userId,Integer[] roleIds)
+    {
+    	userService.insertUserRold(userId, roleIds);
+		return MessageUtil.success("更新成功");
+ 
     }
 }

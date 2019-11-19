@@ -69,4 +69,9 @@ public class UserServiceImpl implements IUserService{
 		return userExtendMapper.findById(id);
 	}
 
+	@Override
+	public void insertUserRold(Integer userId, Integer[] roleIds) {
+		userExtendMapper.insertUserRold(userId, roleIds);
+	}
+
 }

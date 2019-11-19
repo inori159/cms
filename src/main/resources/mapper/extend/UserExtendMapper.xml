@@ -11,22 +11,33 @@
 		<!-- <collection property="logs" -->
 		<!-- resultMap="com.briup.dao.LogsMapper.BaseResultMap"></collection> -->
 		<collection property="roles"
-			resultMap="com.briup.dao.RoleMapper.BaseResultExtendMap"></collection>
+			resultMap="com.briup.dao.extend.RoleExtendMapper.BaseResultExtendMap"></collection>
 	</resultMap>
 
 	<select id="cascadeRoleFindAll" resultMap="BaseResultExtendMap">
 		select
-		cu.*,cr.id as crid,cr.name as crname
+		cu.*,cr.id as
+		crid,cr.name as crname
 		from cms_user_role cur,cms_user cu,cms_role cr
 		where cur.user_id=cu.id
 		and cur.rold_id=cr.id
 	</select>
-	
-	<select id="findById" resultMap="BaseResultExtendMap" parameterType="Integer">
+
+	<select id="findById" resultMap="BaseResultExtendMap"
+		parameterType="Integer">
 		select cu.*,cr.id as crid,cr.name as crname
-		from cms_user_role cur,cms_user cu,cms_role cr
+		from
+		cms_user_role cur,cms_user cu,cms_role cr
 		where cur.user_id=cu.id
-		and cur.rold_id=cr.id
+		and
+		cur.rold_id=cr.id
 		and cu.id = #{id}
 	</select>
+
+	<insert id="insertUserRold">
+		insert into cms_user_role(user_id,rold_id) values
+		<foreach collection="roleIds" item="item" separator=",">
+			(#{userId}, #{item})
+		</foreach>
+	</insert>
 </mapper>

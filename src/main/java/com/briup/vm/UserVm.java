@@ -1,6 +1,6 @@
 package com.briup.vm;
 
-public class UserVm {
+public  class UserVm {
 	private String username;
 	private String password;
 	public String getUsername() {
