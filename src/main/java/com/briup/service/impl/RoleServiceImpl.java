@@ -68,4 +68,11 @@ public class RoleServiceImpl implements IRoleService {
 
 	}
 
+
+	@Override
+	public List<RoleExtend> cascadePrivilegeFindAll() {
+		
+		return roleExtendMapper.cascadePrivilegeFindAll();
+	}
+
 }

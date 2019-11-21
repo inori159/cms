@@ -22,6 +22,15 @@
 		and cr.id=#{rold_id}
 		
 	</select>
+	
+	<select id="cascadePrivilegeFindAll" resultMap="BaseResultExtendMap">
+		select cr.id as crid,cr.name as crname,cp.name,cp.route
+		from cms_role_privilege crp,cms_role cr,cms_privilege cp
+		where
+		crp.rold_id=cr.id
+		and crp.privilege_id = cp.id
+	</select>
+	
    <insert id="insertOrUpdateRolePrivilege" >
   	 insert into cms_role_privilege(rold_id,privilege_id) values (#{roldId}, #{privilegeId})
    </insert>
@@ -29,6 +38,8 @@
    <delete id="deleteRolePrivilege" parameterType="Integer">
    	delete from cms_role_privilege where privilege_id=#{id}
    </delete>
+   
+   
    
    
 </mapper>

@@ -35,4 +35,12 @@ public class RoleController {
 	{
 		return MessageUtil.success(roleService.findAll());
 	}
+	
+	@ApiOperation(value = "级联查询所有角色即权限")
+	@GetMapping("cascadePrivilegeFindAll")
+	public Message cascadePrivilegeFindAll()
+	{
+		return MessageUtil.success(roleService.cascadePrivilegeFindAll());
+	}
+	
 }
