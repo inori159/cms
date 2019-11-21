@@ -4,12 +4,31 @@
   <resultMap id="BaseResultExtendMap" type="com.briup.bean.extend.RoleExtend">
     <id column="crid" jdbcType="INTEGER" property="id" />
     <result column="crname" jdbcType="VARCHAR" property="name" />
+    <collection property="privileges" resultMap="com.briup.dao.PrivilegeMapper.BaseResultMap"></collection>
   </resultMap>
  
-   <insert id="insertRolePrivilege" >
-   insert into cms_role_privilege(rold_id,privilege_id) values
-   	<foreach collection="privilegeIds" item="item" separator=",">
-   		(#{roldId}, #{item})
-   	</foreach>
+<!--    <insert id="insertRolePrivilege" > -->
+<!--   	 insert into cms_role_privilege(rold_id,privilege_id) values -->
+<!--    	<foreach collection="privilegeIds" item="item" separator=","> -->
+<!--    		(#{roldId}, #{item}) -->
+<!--    	</foreach> -->
+<!--    </insert> -->
+	<select id="findById" parameterType="Integer" resultMap="BaseResultExtendMap">
+		select cr.id as crid,cr.name as crname,cp.*
+		from cms_role_privilege crp,cms_role cr,cms_privilege cp
+		where 
+		crp.rold_id=cr.id
+		and crp.privilege_id = cp.id
+		and cr.id=#{rold_id}
+		
+	</select>
+   <insert id="insertOrUpdateRolePrivilege" >
+  	 insert into cms_role_privilege(rold_id,privilege_id) values (#{roldId}, #{privilegeId})
    </insert>
+   
+   <delete id="deleteRolePrivilege" parameterType="Integer">
+   	delete from cms_role_privilege where privilege_id=#{id}
+   </delete>
+   
+   
 </mapper>

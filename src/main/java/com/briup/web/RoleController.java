@@ -1,9 +1,12 @@
 package com.briup.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.service.IRoleService;
@@ -21,9 +24,9 @@ public class RoleController {
 	
 	@ApiOperation(value = "设置角色权限")
 	@PostMapping("setroleprivilege")
-	public Message setRolePrivilege(Integer roldId,Integer[] privilegeIds)
+	public Message setRolePrivilege(@RequestParam(value = "roldId")Integer roldId,@RequestParam(value = "privilegeIds")List<Integer> privilegeIds)
 	{
-		roleService.insertRolePrivilege(roldId, privilegeIds);
+		roleService.insertOrUpdateRolePrivilege(roldId, privilegeIds);
 		return MessageUtil.success("更新成功");
 	}
 	@ApiOperation(value = "查询所有角色")

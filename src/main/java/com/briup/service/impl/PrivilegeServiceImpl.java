@@ -22,4 +22,10 @@ public class PrivilegeServiceImpl implements IPrivilegeService {
 		return privilegeExtendMapper.findAll();
 	}
 
+	@Override
+	public List<PrivilegeExtend> findById(Integer id) {
+		
+		return privilegeExtendMapper.findById(id);
+	}
+
 }

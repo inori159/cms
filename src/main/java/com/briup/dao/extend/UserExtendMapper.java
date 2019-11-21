@@ -11,5 +11,6 @@ public interface UserExtendMapper {
    public List<UserExtend> cascadeRoleFindAll();
    public void saveOrUpdate(UserExtend userExtends);
    public UserExtend findById(Integer id);
-   public void insertUserRold(@Param(value = "userId")Integer userId,@Param(value = "roleIds")Integer[] roleIds);
+   public void insertUserRold(@Param(value = "userId")Integer userId,@Param(value = "roleId")Integer roleId);
+   public void deleteUserRold(Integer id);
 }

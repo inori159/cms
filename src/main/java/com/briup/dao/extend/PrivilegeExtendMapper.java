@@ -7,4 +7,6 @@ import com.briup.bean.extend.PrivilegeExtend;
 public interface PrivilegeExtendMapper {
 
 	public List<PrivilegeExtend> findAll();
+	
+	public List<PrivilegeExtend> findById(Integer id);
 }

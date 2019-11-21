@@ -8,5 +8,5 @@ public interface IRoleService {
 
 	public List<Role> findAll();
 	
-	public void insertRolePrivilege(Integer roldId,Integer[] privilegeIds);
+	public void insertOrUpdateRolePrivilege(Integer roldId,List<Integer> privilegeIds);
 }

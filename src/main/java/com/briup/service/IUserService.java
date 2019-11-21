@@ -13,11 +13,9 @@ public interface IUserService {
 	
 	public void deleteById(Integer id);
 	
-	public void saveOrUpdate(User user);
-	
-	public void setRoles();
+	public void saveOrUpdate(User user);	
 	
 	public UserExtend findById(Integer id);
 	
-	public void insertUserRold(Integer userId,Integer[] roleIds);
+	public void insertOrUpdateUserRold(Integer userId,List<Integer> roleIds);
 }

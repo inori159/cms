@@ -35,9 +35,9 @@
 	</select>
 
 	<insert id="insertUserRold">
-		insert into cms_user_role(user_id,rold_id) values
-		<foreach collection="roleIds" item="item" separator=",">
-			(#{userId}, #{item})
-		</foreach>
+		insert into cms_user_role(user_id,rold_id) values (#{userId}, #{roleId})
 	</insert>
+	<delete id="deleteUserRold" parameterType="Integer">
+		delete from cms_user_role where rold_id=#{id}
+	</delete>
 </mapper>

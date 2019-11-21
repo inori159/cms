@@ -24,4 +24,10 @@ public class PrivilegeController {
 	{
 		return MessageUtil.success(privilegeService.findAll());		
 	}
+	@ApiOperation(value = "查询角色权限")
+	@GetMapping("findById")
+	public Message findById(Integer id)
+	{
+		return MessageUtil.success(privilegeService.findById(id));
+	}
 }
