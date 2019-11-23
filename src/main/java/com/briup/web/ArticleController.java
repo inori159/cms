@@ -41,15 +41,15 @@ public class ArticleController {
 		return MessageUtil.success("成功", ias.findAll());
 	}
 	
-	@ApiOperation(value = "分页")
-	@GetMapping("findAllPage")
-	public Message findAllPage()
-	{
-		PageHelper.startPage(1, 2);
-		List<Article> list = ias.findAll();
-		PageInfo<Article> pageInfo = new PageInfo<Article>(list);
-		return MessageUtil.success("成功", pageInfo);
-	}
+//	@ApiOperation(value = "分页")
+//	@GetMapping("findAllPage")
+//	public Message findAllPage()
+//	{
+//		PageHelper.startPage(1, 2);
+//		List<Article> list = ias.findAll();
+//		PageInfo<Article> pageInfo = new PageInfo<Article>(list);
+//		return MessageUtil.success("成功", pageInfo);
+//	}
 	
 	@ApiOperation(value = "查找所有栏目的文章")
 	@GetMapping("cascadeFindAll")

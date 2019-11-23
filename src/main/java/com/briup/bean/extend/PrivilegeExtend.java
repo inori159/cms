@@ -10,6 +10,11 @@ public class PrivilegeExtend extends Privilege{
 		return childrens;
 	}
 
+	@Override
+	public String toString() {
+		return "PrivilegeExtend [childrens=" + childrens + "]";
+	}
+
 	public void setChildrens(List<Privilege> childrens) {
 		this.childrens = childrens;
 	}

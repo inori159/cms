@@ -43,7 +43,7 @@ public class RoleServiceImpl implements IRoleService {
 			{
 				if(!privilegeIds.contains(p.getId()))
 				{
-					roleExtendMapper.deleteRolePrivilege(p.getId());
+					roleExtendMapper.deleteRolePrivilege(roldId,p.getId());
 				}
 				else
 				{

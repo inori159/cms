@@ -14,13 +14,13 @@
 			resultMap="com.briup.dao.extend.RoleExtendMapper.BaseResultExtendMap"></collection>
 	</resultMap>
 
-	<select id="cascadeRoleFindAll" resultMap="BaseResultExtendMap">
-		select
-		cu.*,cr.id as
-		crid,cr.name as crname
-		from cms_user_role cur,cms_user cu,cms_role cr
-		where cur.user_id=cu.id
-		and cur.rold_id=cr.id
+	<select id="cascadeFindById" resultMap="BaseResultExtendMap" parameterType="Integer">
+		select cu.*,cr.id as crid,cr.name as crname
+		from cms_user cu,cms_user_role cur,cms_role cr
+		where  cu.id=cur.user_id
+		and cr.id=cur.rold_id
+		and cu.id=#{id}
+		
 	</select>
 
 	<select id="findById" resultMap="BaseResultExtendMap"
@@ -31,13 +31,13 @@
 		where cur.user_id=cu.id
 		and
 		cur.rold_id=cr.id
-		and cu.id = #{id}
+		and cu.id = #{id}  
 	</select>
 
 	<insert id="insertUserRold">
 		insert into cms_user_role(user_id,rold_id) values (#{userId}, #{roleId})
 	</insert>
-	<delete id="deleteUserRold" parameterType="Integer">
-		delete from cms_user_role where rold_id=#{id}
+	<delete id="deleteUserRold">
+		delete from cms_user_role where rold_id=#{roleId} and user_id=#{userId}
 	</delete>
 </mapper>

@@ -8,8 +8,17 @@
     <result column="cproute" jdbcType="VARCHAR" property="route" />
     <result column="cptype" jdbcType="VARCHAR" property="type" />
     <result column="cpicon" jdbcType="VARCHAR" property="icon" />
+    <result column="cpparent_id" jdbcType="INTEGER" property="parentId" />
     <collection property="childrens" resultMap="com.briup.dao.PrivilegeMapper.BaseResultMap"></collection>
   </resultMap>
+  
+  <select id="findParantIdByUserId" parameterType="Integer" resultMap="BaseResultExtendMap">
+		select cp.id as cpid,cp.route as cproute,cp.parent_id as cpparent_id
+		from cms_user_role cur,cms_role_privilege crp,cms_privilege cp
+		where cur.rold_id=crp.rold_id
+		and crp.privilege_id= cp.id
+		and cur.user_id=#{userId}
+  </select>
   
   <select id="findAll" resultMap="BaseResultExtendMap">
 		select cp1.id as cpid,cp1.name as cpname,cp1.description as cpdescription,

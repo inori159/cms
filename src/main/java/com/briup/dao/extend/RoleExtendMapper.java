@@ -9,6 +9,6 @@ import com.briup.bean.extend.RoleExtend;
 public interface RoleExtendMapper {
 	public void insertOrUpdateRolePrivilege(@Param(value = "roldId")Integer roldId,@Param(value = "privilegeId")Integer privilegeId);
 	public RoleExtend findById(Integer roldId);
-	public void deleteRolePrivilege(Integer id);
+	public void deleteRolePrivilege(@Param(value = "roldId")Integer roldId,@Param(value = "privilegeId")Integer privilegeI);
 	public List<RoleExtend> cascadePrivilegeFindAll();
 }

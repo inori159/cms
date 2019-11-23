@@ -4,8 +4,12 @@ import java.util.List;
 
 import com.briup.bean.User;
 import com.briup.bean.extend.UserExtend;
+import com.briup.util.CustomerException;
+import com.briup.vm.UserVm;
 
 public interface IUserService {
+	
+	public User login(UserVm userVm) throws CustomerException;
 
 	public List<User> findAll();
 	
@@ -18,4 +22,6 @@ public interface IUserService {
 	public UserExtend findById(Integer id);
 	
 	public void insertOrUpdateUserRold(Integer userId,List<Integer> roleIds);
+	
+	public UserExtend cascadeFindById(Integer id);
 }

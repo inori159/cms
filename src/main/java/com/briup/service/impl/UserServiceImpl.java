@@ -14,6 +14,7 @@ import com.briup.dao.UserMapper;
 import com.briup.dao.extend.UserExtendMapper;
 import com.briup.service.IUserService;
 import com.briup.util.CustomerException;
+import com.briup.vm.UserVm;
 
 @Service
 public class UserServiceImpl implements IUserService{
@@ -81,7 +82,7 @@ public class UserServiceImpl implements IUserService{
 				if(!roleIds.contains(r.getId()))
 				{
 					//通过id删除桥表里的角色
-					userExtendMapper.deleteUserRold(r.getId());
+					userExtendMapper.deleteUserRold(userId,r.getId());
 				}
 				else
 				{
@@ -107,6 +108,28 @@ public class UserServiceImpl implements IUserService{
 		
 		
 
+	}
+
+	@Override
+	public User login(UserVm userVm) throws CustomerException {
+	      UserExample example = new UserExample();
+	      System.out.println(userVm.getUsername()+userVm.getPassword());
+	        example.createCriteria().andUsernameEqualTo(userVm.getUsername());
+	        List<User> list = userMapper.selectByExample(example);
+	        if(list.size()<=0){
+	            throw new CustomerException("该用户不存在");
+	        }
+	        User user = list.get(0);
+	        if(!user.getPassword().equals(userVm.getPassword())){
+	            throw new CustomerException("密码不匹配");
+	        }
+	        return user;
+	}
+
+	@Override
+	public UserExtend cascadeFindById(Integer id) {
+		
+		return userExtendMapper.cascadeFindById(id);
 	}
 
 }
