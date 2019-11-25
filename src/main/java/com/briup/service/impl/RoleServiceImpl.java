@@ -34,10 +34,9 @@ public class RoleServiceImpl implements IRoleService {
 	@Override
 	public void insertOrUpdateRolePrivilege(Integer roldId, List<Integer> privilegeIds) {
 		RoleExtend roleExtend = roleExtendMapper.findById(roldId);
-		
-		if(roleExtend!=null)
-		{
-			List<Privilege> privileges = roleExtend.getPrivileges();
+		List<Privilege> privileges = roleExtend.getPrivileges();
+		if(privileges.size()!=0)
+		{			
 			List<Integer> new_privileges = new ArrayList<Integer>();
 			for(Privilege p:privileges)
 			{

@@ -60,6 +60,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
        {
     	   if(p.getParentId()==null)
     	   {
+    		   
     		   List<Privilege> privileges = PrivilegeService.findByParentId(p.getId()); 
     	       for(Privilege p2 : privileges){
     	    	   int lastIndexOf = p2.getRoute().lastIndexOf("/");	    	   
@@ -74,9 +75,9 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
     	       }
     	   }
     	   if(p.getRoute().equals(path))
-    		   {
+    	   {
     			   return ;
-    		   }      
+    	   }      
  
        }
     	throw new CustomerException("无权限访问");

@@ -69,12 +69,13 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public void insertOrUpdateUserRold(Integer userId,List<Integer> roleIds) {
-		//如果用户的角色为空即直接插入
+		
 		//不为空的话即判断数据库已存在用户的的角色
 		UserExtend userExtend = userExtendMapper.findById(userId);
-		if(userExtend!=null)
+
+		List<Role> roles = userExtend.getRoles();	
+		if(roles.size()!=0)
 		{
-			List<Role> roles = userExtend.getRoles();
 			List<Integer> new_roles = new ArrayList<>();
 			//数据库的角色和新传入的角色ids,新ids不包含旧的ids,即删除数据库里旧的角色id
 			for(Role r:roles)
@@ -100,14 +101,12 @@ public class UserServiceImpl implements IUserService{
 		}
 		else
 		{
+			//角色为空的话直接插入
 			for(Integer i:roleIds)
 			{
 				userExtendMapper.insertUserRold(userId, i);
 			}	
 		}
-		
-		
-
 	}
 
 	@Override
