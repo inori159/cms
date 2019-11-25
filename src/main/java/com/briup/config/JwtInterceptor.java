@@ -60,15 +60,18 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
        {
     	   if(p.getParentId()==null)
     	   {
-    		   System.out.println(p);
     		   List<Privilege> privileges = PrivilegeService.findByParentId(p.getId()); 
     	       for(Privilege p2 : privileges){
-    	          	System.out.println(p2.getRoute());
-    	              if(p2.getRoute().equals(path))
-    	               {
-    	                   return ;
-    	               }
-    	             }
+    	    	   int lastIndexOf = p2.getRoute().lastIndexOf("/");	    	   
+    	    	   if(p.getRoute().substring(lastIndexOf+1).equals("*"))
+	    		   {	    		   
+    	    		   if(p2.getRoute().substring(0, lastIndexOf).equals(path.substring(0, lastIndexOf)))
+        	    	   {     	    			   
+    	    			   return ;	
+        	    	   }
+    	    		   
+	    		   }
+    	       }
     	   }
     	   if(p.getRoute().equals(path))
     		   {

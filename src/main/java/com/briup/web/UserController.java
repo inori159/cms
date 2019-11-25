@@ -27,20 +27,6 @@ import io.swagger.annotations.ApiOperation;
 public class UserController {
 	@Autowired
 	IUserService userService;
-	
-	@ApiOperation(value = "查询所有用户")
-	@GetMapping("findAll")
-	public Message findAll()
-	{
-		return MessageUtil.success("查询成功", userService.findAll());
-	}
-	@ApiOperation(value = "根据Id查询用户")
-	@GetMapping("cascadeFindById")
-	public Message cascadeFindById(Integer id)
-	{
-		return MessageUtil.success(userService.cascadeFindById(id));
-	}
-	
 
 	@ApiOperation(value = "登录")
 	@PostMapping(value = "login")
@@ -68,19 +54,26 @@ public class UserController {
     @GetMapping(value = "info")
     public Message info(String token)
     {    	
-        // 1. 通过token获取用户信息  {id,use,gender,roles:[]}
-    	System.out.println(token);
+        // 1. 通过token获取用户信息  {id,use,gender,roles:[]}  	
         long id = Long.parseLong(JwtTokenUtil.getUserId(token,JwtTokenUtil.base64Secret));
-        System.out.println(id);
-        System.out.println(Integer.valueOf(id+""));
         UserExtend userExtend = userService.findById(Integer.valueOf(id+""));
         return MessageUtil.success(userExtend);
     }
     
-    
-    
-    
-    
+	@ApiOperation(value = "查询所有用户")
+	@GetMapping("findAll")
+	public Message findAll()
+	{
+		return MessageUtil.success("查询成功", userService.findAll());
+	}
+  
+	@ApiOperation(value = "根据Id查询用户")
+	@GetMapping("cascadeFindById")
+	public Message cascadeFindById(Integer id)
+	{
+		return MessageUtil.success(userService.cascadeFindById(id));
+	}
+	
     @ApiOperation(value ="设置用户角色")
     @PostMapping(value = "insertOrUpdateUserRold")
     public Message insertOrUpdateUserRold(@RequestParam(value ="userId")Integer userId,@RequestParam(value ="roleIds")List<Integer> roleIds)

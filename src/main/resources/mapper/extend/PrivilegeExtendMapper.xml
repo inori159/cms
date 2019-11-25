@@ -29,7 +29,7 @@
   </select>
   
   <select id="findById" resultMap="BaseResultExtendMap" parameterType="Integer">
-  	select cp1.name as cpname,cp1.description as cpdescription,
+  	select cp1.id as cpid,cp1.name as cpname,cp1.description as cpdescription,
 		cp1.route as cproute,cp1.type as cptype,cp1.icon as cpicon
 		,cp2.*
 		from cms_privilege cp1,cms_privilege cp2,cms_role_privilege crp
